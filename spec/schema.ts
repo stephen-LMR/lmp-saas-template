@@ -1,6 +1,8 @@
 // COPIED FILE. Do not edit here.
 // Source: lmp-builder src/spec/schema.ts at commit e5a68f43cfc6affefa7e8e256f5bf09f4077aed5.
-// To change the shape, ask Lane E; then copy the file again and update this header.
+// Only difference from the source: relative imports drop the ".js" ending, because the
+// Next.js bundler (Turbopack) cannot resolve "./x.js" to "./x.ts". The shapes are identical.
+// To change a shape, ask Lane E; then copy the file again and update this header.
 import { z } from "zod";
 
 // Modules the base SaaS template ships with. The spec switches them on per client.

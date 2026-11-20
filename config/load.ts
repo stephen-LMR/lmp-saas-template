@@ -1,6 +1,6 @@
 // The app boots from one AppConfig. Anything invalid stops the build with a readable list
 // of what is wrong, so a bad config can never reach a preview.
-import { AppConfig } from "../contracts/template.js";
+import { AppConfig } from "../contracts/template";
 
 export class AppConfigError extends Error {
   constructor(public readonly problems: string[]) {

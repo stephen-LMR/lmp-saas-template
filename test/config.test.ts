@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import raw from "../app.config.json" with { type: "json" };
-import { appConfig } from "../config/index.js";
-import { AppConfigError, parseAppConfig } from "../config/load.js";
-import { ModuleKey } from "../spec/schema.js";
+import { appConfig } from "../config/index";
+import { AppConfigError, parseAppConfig } from "../config/load";
+import { ModuleKey } from "../spec/schema";
 
-const clone = () => structuredClone(raw) as Record<string, any>;
+const clone = () => structuredClone(raw);
 
 describe("app config", () => {
   it("boots from the demo app.config.json", () => {
@@ -14,7 +14,7 @@ describe("app config", () => {
 
   it("rejects a config that is missing a module", () => {
     const c = clone();
-    c.modules = c.modules.filter((m: { key: string }) => m.key !== "booking");
+    c.modules = c.modules.filter(m => m.key !== "booking");
     expect(() => parseAppConfig(c)).toThrow(/every ModuleKey exactly once/);
   });
 

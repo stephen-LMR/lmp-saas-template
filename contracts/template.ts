@@ -1,11 +1,13 @@
 // COPIED FILE. Do not edit here.
 // Source: lmp-builder src/contracts/template.ts at commit e5a68f43cfc6affefa7e8e256f5bf09f4077aed5.
-// To change the shape, ask Lane E; then copy the file again and update this header.
+// Only difference from the source: relative imports drop the ".js" ending, because the
+// Next.js bundler (Turbopack) cannot resolve "./x.js" to "./x.ts". The shapes are identical.
+// To change a shape, ask Lane E; then copy the file again and update this header.
 // What the build agent hands the template: which modules are on, how they are configured,
 // and the theme. Merchant apps never get a custom design, only a theme (docs/DESIGN.md).
 import { z } from "zod";
-import { ModuleKey, Spec } from "../spec/schema.js";
-import { HexColor, Id } from "./common.js";
+import { ModuleKey, Spec } from "../spec/schema";
+import { HexColor, Id } from "./common";
 
 export const DESIGN_VIEWPORTS = [375, 768, 1280] as const;
 

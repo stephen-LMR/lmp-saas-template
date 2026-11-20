@@ -1,6 +1,8 @@
 // COPIED FILE. Do not edit here.
 // Source: lmp-builder src/contracts/common.ts at commit e5a68f43cfc6affefa7e8e256f5bf09f4077aed5.
-// To change the shape, ask Lane E; then copy the file again and update this header.
+// Only difference from the source: relative imports drop the ".js" ending, because the
+// Next.js bundler (Turbopack) cannot resolve "./x.js" to "./x.ts". The shapes are identical.
+// To change a shape, ask Lane E; then copy the file again and update this header.
 // Shared primitives for every contract. Contracts are zod schemas plus their inferred
 // types. They hold data shapes and a few pure rules, never I/O. See README.md here.
 import { z } from "zod";
