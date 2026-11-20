@@ -1,0 +1,78 @@
+{
+  "project_id": "00000000-0000-4000-8000-000000000001",
+  "template_version": "0.1.0",
+  "merchant_name": "Demo Merchant",
+  "theme": {
+    "preset_id": "default",
+    "primary_color": "#1d4ed8",
+    "accent_color": "#f59e0b",
+    "font_pairing_id": "default",
+    "mode": "light",
+    "logo_url": null
+  },
+  "modules": [
+    {
+      "key": "auth",
+      "enabled": true,
+      "settings": {}
+    },
+    {
+      "key": "booking",
+      "enabled": true,
+      "settings": {}
+    },
+    {
+      "key": "services_catalog",
+      "enabled": true,
+      "settings": {}
+    },
+    {
+      "key": "customers_crm",
+      "enabled": true,
+      "settings": {}
+    },
+    {
+      "key": "payments_onetime",
+      "enabled": true,
+      "settings": {}
+    },
+    {
+      "key": "subscriptions",
+      "enabled": false,
+      "settings": {}
+    },
+    {
+      "key": "invoicing",
+      "enabled": false,
+      "settings": {}
+    },
+    {
+      "key": "loyalty",
+      "enabled": false,
+      "settings": {}
+    },
+    {
+      "key": "staff_scheduling",
+      "enabled": false,
+      "settings": {}
+    },
+    {
+      "key": "notifications",
+      "enabled": false,
+      "settings": {}
+    },
+    {
+      "key": "reporting",
+      "enabled": false,
+      "settings": {}
+    },
+    {
+      "key": "custom_entities",
+      "enabled": false,
+      "settings": {}
+    }
+  ],
+  "custom_entities": [],
+  "processor": "cardpointe",
+  "customer_sms_enabled": false
+}
