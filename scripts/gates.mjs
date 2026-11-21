@@ -4,7 +4,7 @@
 // Gates that belong to the pipeline (diff_scan, design_review, guide_coverage, video_checks)
 // are not reported here. A gate that could not run is reported as failed, never as passed.
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const LOGS = ".gates";
@@ -41,7 +41,7 @@ if (hasGitleaks) simple("secret_scan", "gitleaks", ["detect", "--no-banner", "--
 else report("secret_scan", false, "Not run: gitleaks is not installed on this machine.");
 
 // Browser gates share one build and one Playwright run.
-const BROWSER_GATES = ["template_regression", "acceptance_tests", "accessibility", "mobile_viewport", "visual_regression"];
+const BROWSER_GATES = ["template_regression", "acceptance_tests", "accessibility", "mobile_viewport", "visual_regression", "lighthouse"];
 const build = run("build", "npm", ["run", "--silent", "build"]);
 if (!build.ok) {
   for (const g of BROWSER_GATES) report(g, false, `Not run: the build failed. ${build.tail}`);
@@ -77,6 +77,10 @@ if (!build.ok) {
   verdict("accessibility", t => t.title.includes("accessibility"));
   verdict("mobile_viewport", t => t.project === "w375" && t.title.includes("sideways"));
   verdict("visual_regression", isVisual, { emptyText: `Not run: no approved baselines for ${process.platform} in e2e/__screenshots__.` });
+
+  // Mobile Lighthouse: performance 90+, accessibility 95+, best practices 95+ (lighthouserc.json).
+  const lh = run("lighthouse", "npx", ["lhci", "autorun"]);
+  report("lighthouse", lh.ok, lh.ok ? "Performance, accessibility, and best practices meet the thresholds." : lh.tail);
 }
 
 const out = process.env.GATES_OUT;

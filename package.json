@@ -17,7 +17,8 @@
     "check-design": "node scripts/check-design.mjs .",
     "test:visual:update": "UPDATE_VISUAL=1 playwright test e2e/visual.spec.ts --update-snapshots",
     "check-tokens": "node scripts/check-tokens.mjs .",
-    "gates": "node scripts/gates.mjs"
+    "gates": "node scripts/gates.mjs",
+    "lighthouse": "lhci autorun"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
+    "@lhci/cli": "0.16.0",
     "@playwright/test": "1.65.0",
     "@tailwindcss/postcss": "4.3.4",
     "@types/node": "24.19.2",

@@ -1,0 +1,24 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start -- --port 3200",
+      "startServerReadyPattern": "Ready",
+      "url": [
+        "http://localhost:3200/design/dashboard",
+        "http://localhost:3200/design/list",
+        "http://localhost:3200/design/booking",
+        "http://localhost:3200/design/form"
+      ],
+      "numberOfRuns": 1,
+      "settings": { "chromeFlags": "--headless=new --no-sandbox" }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:best-practices": ["error", { "minScore": 0.95 }]
+      }
+    },
+    "upload": { "target": "filesystem", "outputDir": ".lighthouseci/reports" }
+  }
+}
