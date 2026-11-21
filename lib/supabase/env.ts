@@ -6,17 +6,17 @@ export class MissingEnvError extends Error {
   }
 }
 
-export type SupabaseEnv = { url: string; anonKey: string };
+export type SupabaseEnv = { url: string; publishableKey: string };
 
 // The names are written out in full because Next.js only inlines NEXT_PUBLIC_ values
 // in browser code when it sees the whole property access.
 export function supabaseEnv(
   url: string | undefined = process.env.NEXT_PUBLIC_SUPABASE_URL,
-  anonKey: string | undefined = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  publishableKey: string | undefined = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 ): SupabaseEnv {
   const missing: string[] = [];
   if (!url) missing.push("NEXT_PUBLIC_SUPABASE_URL");
-  if (!anonKey) missing.push("NEXT_PUBLIC_SUPABASE_ANON_KEY");
-  if (!url || !anonKey) throw new MissingEnvError(missing);
-  return { url, anonKey };
+  if (!publishableKey) missing.push("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY");
+  if (!url || !publishableKey) throw new MissingEnvError(missing);
+  return { url, publishableKey };
 }

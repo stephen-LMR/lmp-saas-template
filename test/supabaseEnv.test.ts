@@ -5,7 +5,7 @@ describe("supabase env", () => {
   it("returns the url and key when both are set", () => {
     expect(supabaseEnv("https://example.supabase.co", "anon")).toEqual({
       url: "https://example.supabase.co",
-      anonKey: "anon"
+      publishableKey: "anon"
     });
   });
 
@@ -15,7 +15,7 @@ describe("supabase env", () => {
       expect.unreachable();
     } catch (e) {
       expect(e).toBeInstanceOf(MissingEnvError);
-      expect((e as MissingEnvError).missing).toEqual(["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_ANON_KEY"]);
+      expect((e as MissingEnvError).missing).toEqual(["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"]);
     }
   });
 });
