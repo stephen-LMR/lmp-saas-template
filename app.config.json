@@ -3,10 +3,10 @@
   "template_version": "0.1.0",
   "merchant_name": "Demo Merchant",
   "theme": {
-    "preset_id": "default",
-    "primary_color": "#1d4ed8",
-    "accent_color": "#f59e0b",
-    "font_pairing_id": "default",
+    "preset_id": "ocean",
+    "primary_color": "#2563eb",
+    "accent_color": "#b45309",
+    "font_pairing_id": "clean",
     "mode": "light",
     "logo_url": null
   },

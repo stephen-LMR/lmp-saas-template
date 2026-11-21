@@ -15,17 +15,17 @@
   --font-*: initial;
 
   /* Neutral scale */
-  --color-neutral-50: oklch(0.985 0.002 250);
-  --color-neutral-100: oklch(0.967 0.003 250);
-  --color-neutral-200: oklch(0.925 0.005 250);
-  --color-neutral-300: oklch(0.869 0.008 250);
-  --color-neutral-400: oklch(0.705 0.012 250);
-  --color-neutral-500: oklch(0.552 0.014 250);
-  --color-neutral-600: oklch(0.446 0.014 250);
-  --color-neutral-700: oklch(0.372 0.013 250);
-  --color-neutral-800: oklch(0.279 0.011 250);
-  --color-neutral-900: oklch(0.208 0.01 250);
-  --color-neutral-950: oklch(0.141 0.008 250);
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #030712;
 
   /* Type scale: 6 steps */
   --text-xs: 0.75rem;
@@ -96,32 +96,46 @@
 }
 
 :root {
-  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-system: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-system);
   --font-display: var(--font-body);
 
+  /* Font pairings. The names on the right are set by app/fonts.ts. */
+  --font-clean-heading: var(--font-inter), var(--font-system);
+  --font-clean-body: var(--font-inter), var(--font-system);
+  --font-friendly-heading: var(--font-nunito), var(--font-system);
+  --font-friendly-body: var(--font-nunito-sans), var(--font-system);
+  --font-classic-heading: var(--font-lora), Georgia, serif;
+  --font-classic-body: var(--font-source-sans), var(--font-system);
+  --font-modern-heading: var(--font-manrope), var(--font-system);
+  --font-modern-body: var(--font-inter), var(--font-system);
+
+  /* Light mode. --background must match backgrounds.light in theme-catalog.json. */
   --background: var(--color-neutral-50);
   --foreground: var(--color-neutral-900);
-  --card: oklch(1 0 0);
+  --card: #ffffff;
   --card-foreground: var(--color-neutral-900);
   --muted: var(--color-neutral-100);
   --muted-foreground: var(--color-neutral-600);
   --border: var(--color-neutral-200);
-  --input: var(--color-neutral-400);
+  --input: var(--color-neutral-500);
   --ring: var(--primary);
-  --primary: oklch(0.488 0.2 262);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: var(--color-neutral-100);
+  /* Primary and accent are replaced per merchant by the theme (design/theme.ts). */
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-neutral-200);
   --secondary-foreground: var(--color-neutral-900);
-  --accent: oklch(0.82 0.16 80);
-  --accent-foreground: var(--color-neutral-950);
-  --success: oklch(0.5 0.13 155);
-  --success-foreground: oklch(1 0 0);
-  --warning: oklch(0.82 0.16 80);
+  --accent: #b45309;
+  --accent-foreground: #ffffff;
+  --success: #047857;
+  --success-foreground: #ffffff;
+  --warning: #fbbf24;
   --warning-foreground: var(--color-neutral-950);
-  --danger: oklch(0.52 0.2 27);
-  --danger-foreground: oklch(1 0 0);
+  --danger: #b91c1c;
+  --danger-foreground: #ffffff;
 }
 
+/* Dark mode. --background must match backgrounds.dark in theme-catalog.json. */
 [data-mode="dark"] {
   --background: var(--color-neutral-950);
   --foreground: var(--color-neutral-50);
@@ -130,13 +144,15 @@
   --muted: var(--color-neutral-800);
   --muted-foreground: var(--color-neutral-300);
   --border: var(--color-neutral-700);
-  --input: var(--color-neutral-500);
-  --primary: oklch(0.72 0.15 262);
+  --input: var(--color-neutral-400);
+  --primary: #60a5fa;
   --primary-foreground: var(--color-neutral-950);
   --secondary: var(--color-neutral-800);
   --secondary-foreground: var(--color-neutral-50);
-  --success: oklch(0.75 0.15 155);
+  --accent: #fbbf24;
+  --accent-foreground: var(--color-neutral-950);
+  --success: #34d399;
   --success-foreground: var(--color-neutral-950);
-  --danger: oklch(0.72 0.17 27);
+  --danger: #f87171;
   --danger-foreground: var(--color-neutral-950);
 }
