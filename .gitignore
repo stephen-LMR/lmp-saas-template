@@ -9,3 +9,5 @@ playwright-report
 tsconfig.tsbuildinfo
 .gates
 .lighthouseci
+.capture
+captures

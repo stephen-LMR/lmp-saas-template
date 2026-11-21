@@ -62,6 +62,8 @@
 
   /* One max content width */
   --container-content: 72rem;
+  /* Width of a phone screen (375px), for the phone frame that shows captured clips */
+  --container-phone: 23.4375rem;
 
   /* The widths every screen is checked at: 375 (base), 768, 1280 */
   --breakpoint-md: 48rem;

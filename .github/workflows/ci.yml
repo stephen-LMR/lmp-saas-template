@@ -22,4 +22,6 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      # Proves the phone capture script end to end on one real flow.
+      - run: npm run capture -- e2e/design.spec.ts -g "picking a time"
       - run: npm run lighthouse

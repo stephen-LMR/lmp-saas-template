@@ -8,6 +8,9 @@ export const DESIGN_PAGES = [
   { path: "/design/settings", name: "settings", onePrimary: true },
   { path: "/design/booking", name: "public-booking", onePrimary: true },
   { path: "/design/portal", name: "customer-portal", onePrimary: true },
+  { path: "/design/site", name: "site-photos", onePrimary: true },
+  { path: "/design/site-empty", name: "site-no-photos", onePrimary: true },
+  { path: "/design/phone", name: "phone-frame", onePrimary: true },
   { path: "/design/states", name: "states", onePrimary: true },
   { path: "/no-such-page", name: "not-found", onePrimary: true }
 ] as const;

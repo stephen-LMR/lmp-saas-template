@@ -18,7 +18,8 @@ import { DialogDemo, MenuDemo } from "./demos";
 
 const PATTERNS = [
   ["dashboard", "Dashboard"], ["list", "List and detail"], ["calendar", "Calendar"], ["form", "Form"],
-  ["settings", "Settings"], ["booking", "Public booking page"], ["portal", "Customer portal"], ["states", "Empty, loading, error"]
+  ["settings", "Settings"], ["booking", "Public booking page"], ["portal", "Customer portal"], ["states", "Empty, loading, error"],
+  ["site", "Public page with photos"], ["site-empty", "Public page, no photos"], ["phone", "Phone frame"]
 ] as const;
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

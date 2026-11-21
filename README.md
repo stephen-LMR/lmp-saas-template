@@ -46,6 +46,37 @@ Tailwind's default colors, type sizes, spacing, radii, shadows, and widths are s
 - State variants: `state-open:`, `state-closed:`, `current:`, `aria-checked:`, `aria-selected:`, `aria-pressed:`. No arbitrary `data-[...]` variants.
 - One primary button per screen. Every list and form uses the states in `patterns/states.tsx`.
 
+## Merchant photos
+The public pages have four photo slots: hero, services, gallery, and about (`patterns/site.tsx`).
+The build agent fills `src/custom/images.json`; the template ships with no photos.
+
+```json
+{
+  "hero": { "src": "https://.../front.jpg", "alt": "The shop front on a sunny day" },
+  "about": null,
+  "gallery": [],
+  "services": { "Full groom": { "src": "/photos/groom.jpg", "alt": "A groomer trimming a spaniel" } }
+}
+```
+
+- Every photo needs alt text that describes it. A missing alt, or a file name used as alt, stops the build.
+- `src` is a path inside the app or an `https://` address. Up to 12 gallery photos.
+- No photo: the section closes up into a text layout (no gray boxes, no gallery). A service
+  without a photo next to ones that have photos gets a quiet placeholder. A photo that fails
+  to load turns into the same placeholder.
+- See both looks at `/design/site` and `/design/site-empty`.
+
+## Phone captures
+`npm run capture` films the acceptance tests on a 375 px wide screen and saves, per passing test,
+in `captures/<test>/`: `clip.webm` and `still.png` (plain), `framed.webm` and `framed.png` (inside
+the phone frame), plus `captures/manifest.json` with alt text for each. A failing test is never captured.
+
+- Needs `npm run build` first. Film other tests: `npm run capture -- e2e/design.spec.ts -g "picking a time"`.
+- Clips are silent WebM and loop in a `<video loop>` tag. Clips in the frame are cut at 12 seconds
+  (`CAPTURE_MAX_SECONDS`). Email cannot play video, so emails should use the still.
+- In the app, use `PhoneClip` or `PhoneStill` from `components/ui/phone-frame.tsx`. People who ask
+  their device for less motion get the still instead of the clip.
+
 ## Modules
 `modules/registry.ts` has one entry per `ModuleKey`. Built so far (settings, records, and logic; pages and database come next): `auth`, `services_catalog`, `booking`, `customers_crm`, `payments_onetime`. Switching on a module that is not built yet fails the build.
 
