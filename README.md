@@ -47,11 +47,13 @@ It was generated from this repo, so the code is the source and Figma mirrors it.
 | Variables: Primitives, Color (Light, Dark), Size | `tokens/tokens.css` |
 | Variables: Brand, one mode per theme preset | `tokens/theme-catalog.json` (each preset's default colors) |
 | Text styles `body/*`, `label/*`, `heading/*` and `shadow/sm`, `shadow/lg` | the type scale and shadows in `tokens/tokens.css` |
-| Components: Button, Badge, Input, Alert, Card | `components/ui/` |
+| Components page: all 21 components | `components/ui/` |
+| Patterns page: 10 screens at phone width (375) | `patterns/` and the sample screens under `app/design/` |
 | Themes page | the same components under all 8 presets |
 
-Not in Figma yet: the other components, the page patterns, the photo slots, the phone frame, and
-the other three font pairings (Figma uses Inter). When a token changes here, change it in Figma too.
+Limits of the Figma file: screens are drawn at phone width only (not 768 or 1280); icons are simple
+stand-in shapes; photo slots show the placeholder, not real photos; fonts are Inter only (the other
+three pairings are not set up). When a token or component changes here, change it in Figma too.
 
 ## Design rules
 Tailwind's default colors, type sizes, spacing, radii, shadows, and widths are switched off. Only classes backed by a token in `tokens/tokens.css` exist, so `p-5` or `bg-red-500` produce nothing. `npm run check-tokens` fails on any such class.
