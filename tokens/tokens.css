@@ -2,7 +2,7 @@
  * Design tokens. The only place raw values live (docs/DESIGN.md in lmp-builder).
  * Tailwind's default palette, type scale, spacing, radii, shadows, and widths are
  * switched off below, so a class that is not backed by a token does not exist.
- * First pass, built in code. Reconcile with the Figma file when it exists.
+ * Mirrored in the Figma file named in the README. Change both together.
  */
 @theme {
   --color-*: initial;

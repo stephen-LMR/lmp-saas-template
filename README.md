@@ -38,6 +38,21 @@ A merchant app never gets a custom design. It gets a theme: one of 8 presets, a 
 - `mapBrandColor()` in `design/theme.ts` snaps a merchant's brand color to the nearest approved shade that passes WCAG AA.
 - A theme outside the catalog, or a shade that fails contrast in the chosen mode, fails the build.
 
+## Figma
+The design system also lives in Figma: https://www.figma.com/design/OTzD6QKJWf42lmLROLh4rp
+It was generated from this repo, so the code is the source and Figma mirrors it.
+
+| Figma | Code |
+|---|---|
+| Variables: Primitives, Color (Light, Dark), Size | `tokens/tokens.css` |
+| Variables: Brand, one mode per theme preset | `tokens/theme-catalog.json` (each preset's default colors) |
+| Text styles `body/*`, `label/*`, `heading/*` and `shadow/sm`, `shadow/lg` | the type scale and shadows in `tokens/tokens.css` |
+| Components: Button, Badge, Input, Alert, Card | `components/ui/` |
+| Themes page | the same components under all 8 presets |
+
+Not in Figma yet: the other components, the page patterns, the photo slots, the phone frame, and
+the other three font pairings (Figma uses Inter). When a token changes here, change it in Figma too.
+
 ## Design rules
 Tailwind's default colors, type sizes, spacing, radii, shadows, and widths are switched off. Only classes backed by a token in `tokens/tokens.css` exist, so `p-5` or `bg-red-500` produce nothing. `npm run check-tokens` fails on any such class.
 
