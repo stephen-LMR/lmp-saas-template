@@ -35,6 +35,8 @@ export default defineConfig({
     : {
         command: `npm run start -- --port ${PORT}`,
         url: `http://localhost:${PORT}/api/health`,
+        // Browser tests run on the built-in demo records, never on a real database.
+        env: { APP_DATA: "demo" },
         reuseExistingServer: !process.env.CI
       }
 });

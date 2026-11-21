@@ -27,7 +27,11 @@ export type DayHours = z.infer<typeof DayHours>;
 
 const WEEKDAYS_9_TO_5: DayHours[] = [1, 2, 3, 4, 5].map(day => ({ day, open: "09:00", close: "17:00" }));
 
+// A real time zone name such as "America/Chicago". Decides what "today" and "now" mean for the business.
+const TimeZone = z.string().refine(tz => { try { new Intl.DateTimeFormat("en-US", { timeZone: tz }); return true; } catch { return false; } }, { message: "not a known time zone" });
+
 export const BookingSettings = z.strictObject({
+  time_zone: TimeZone.default("America/New_York"),
   slot_minutes: z.union([z.literal(5), z.literal(10), z.literal(15), z.literal(20), z.literal(30), z.literal(60)]).default(30),
   lead_time_hours: z.number().int().min(0).max(168).default(2),      // how soon before a visit a customer can book
   max_advance_days: z.number().int().min(1).max(365).default(60),    // how far ahead a customer can book

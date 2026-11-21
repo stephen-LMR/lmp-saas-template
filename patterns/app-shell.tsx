@@ -43,13 +43,14 @@ function Brand({ name, logoUrl }: { name: string; logoUrl?: string | null }) {
 
 // Signed-in layout: side navigation on wide screens, a top bar with a menu on phones and tablets.
 export function AppShell({
-  merchantName, logoUrl, items, current, children
-}: { merchantName: string; logoUrl?: string | null; items: NavItem[]; current: string; children: ReactNode }) {
+  merchantName, logoUrl, items, current, footer, children
+}: { merchantName: string; logoUrl?: string | null; footer?: ReactNode; items: NavItem[]; current: string; children: ReactNode }) {
   return (
     <div className="min-h-dvh xl:grid xl:grid-cols-5">
       <aside className="hidden border-r bg-card p-4 xl:col-span-1 xl:flex xl:flex-col xl:gap-6">
         <Brand name={merchantName} logoUrl={logoUrl} />
         <NavLinks items={items} current={current} />
+        {footer ? <div className="mt-auto">{footer}</div> : null}
       </aside>
       <div className="flex min-w-0 flex-col xl:col-span-4">
         <div className="flex items-center justify-between gap-3 border-b bg-card px-4 py-2 xl:hidden">
@@ -64,6 +65,7 @@ export function AppShell({
               <SheetTitle>{merchantName}</SheetTitle>
               <SheetDescription className="sr-only">Main menu</SheetDescription>
               <NavLinks items={items} current={current} />
+              {footer}
             </SheetContent>
           </Sheet>
         </div>

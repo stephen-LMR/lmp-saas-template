@@ -98,7 +98,37 @@ the phone frame), plus `captures/manifest.json` with alt text for each. A failin
   their device for less motion get the still instead of the clip.
 
 ## Modules
-`modules/registry.ts` has one entry per `ModuleKey`. Built so far (settings, records, and logic; pages and database come next): `auth`, `services_catalog`, `booking`, `customers_crm`, `payments_onetime`. Switching on a module that is not built yet fails the build.
+Built: auth, services_catalog, customers_crm, booking, payments_onetime. The rest can't be switched on yet.
+
+| Screen | Address | Who |
+|---|---|---|
+| Home | `/` | anyone |
+| Book a visit, then confirmation | `/book`, `/book/done` | anyone |
+| Sign in (email link) | `/sign-in` | staff |
+| Dashboard | `/dashboard` | staff |
+| Calendar, new booking | `/calendar`, `/bookings/new` | staff |
+| Customers, one customer, add | `/customers`, `/customers/[id]`, `/customers/new` | staff |
+| Services, add | `/services`, `/services/new` | staff; only owner and managers add |
+| Payments (records only) | `/payments` | staff |
+
+Navigation shows only the modules that are switched on.
+
+**Where records come from** (`data/`): the screens use one interface with two versions.
+- `data/supabase.ts`: the merchant's database. Staff actions run as the signed-in person, so row
+  level security decides what they may do. The public booking page runs on the server with
+  `SUPABASE_SECRET_KEY` and never sends that key to the browser.
+- `data/demo.ts`: invented records in memory, used when `APP_DATA=demo`. Browser tests always use
+  it. It enforces the same rules as the database (roles, no double booking, one customer per email).
+
+**Rules the server enforces on every booking:** the service must be active, the time must be open
+when recomputed on the server (business hours, lead time, how far ahead, gaps between bookings),
+and the database refuses a double booking even if two people confirm at once. "Today" and "now"
+come from `booking.settings.time_zone` (default America/New_York).
+
+**Not built yet in these modules:** taking card payments (waits on CardPointe test credentials),
+confirmation and reminder emails (the notifications module), editing or cancelling a booking,
+customers signing in to see their bookings, editing services and customers, rate limiting on the
+public booking form, and a staff team page.
 
 ## Database
 One Supabase project per merchant app. Row level security is on for every table and table access is granted by hand, so a new table is closed until a policy opens it.
