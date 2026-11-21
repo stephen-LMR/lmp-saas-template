@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MAX_GALLERY_IMAGES, parseSiteImages, serviceImage, SiteImagesError } from "../config/images";
+import { IMAGE_SLOTS, MAX_GALLERY_IMAGES, parseSiteImages, serviceImage, SiteImagesError } from "../config/images";
 import { siteImages } from "../config/index";
 
 const photo = { src: "https://cdn.example.com/front.jpg", alt: "The shop front on a sunny day" };
@@ -60,5 +60,21 @@ describe("merchant photos", () => {
 
   it("refuses a slot the template does not have", () => {
     expect(problems({ banner: photo }).length).toBeGreaterThan(0);
+  });
+
+  it("publishes a slot list the build agent can rely on", () => {
+    expect(IMAGE_SLOTS.map(s => s.id)).toEqual(["logo", "hero", "about", "gallery", "service"]);
+    for (const s of IMAGE_SLOTS) {
+      expect(["logo", "photo"]).toContain(s.kind);
+      expect(s.min_width).toBeGreaterThan(0);
+      expect(s.min_height).toBeGreaterThan(0);
+      expect(s.aspect_ratio === null || /^\d+:\d+$/.test(s.aspect_ratio)).toBe(true);
+      expect(s.placeholder.length).toBeGreaterThan(10);
+      if (s.aspect_ratio) {
+        const [w, h] = s.aspect_ratio.split(":").map(Number) as [number, number];
+        expect(s.min_width / s.min_height).toBeCloseTo(w / h, 2);
+      }
+    }
+    expect(MAX_GALLERY_IMAGES).toBe(12);
   });
 });

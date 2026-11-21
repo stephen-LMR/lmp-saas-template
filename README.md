@@ -65,13 +65,16 @@ The build agent fills `src/custom/images.json`; the template ships with no photo
   without a photo next to ones that have photos gets a quiet placeholder. A photo that fails
   to load turns into the same placeholder.
 - See both looks at `/design/site` and `/design/site-empty`.
+- The full slot list, with kind, smallest size, and aspect ratio for each, is `tokens/image-slots.json`.
+  The logo slot is `theme.logo_url` in `app.config.json`; pass it to the shells as `logoUrl`.
 
 ## Phone captures
 `npm run capture` films the acceptance tests on a 375 px wide screen and saves, per passing test,
 in `captures/<test>/`: `clip.webm` and `still.png` (plain), `framed.webm` and `framed.png` (inside
 the phone frame), plus `captures/manifest.json` with alt text for each. A failing test is never captured.
 
-- Needs `npm run build` first. Film other tests: `npm run capture -- e2e/design.spec.ts -g "picking a time"`.
+- Film a deployed preview: `CAPTURE_BASE_URL=https://<preview address> npm run capture` (no path on the address).
+- Without that it films a local build, so run `npm run build` first. Film other tests: `npm run capture -- e2e/design.spec.ts -g "picking a time"`.
 - Clips are silent WebM and loop in a `<video loop>` tag. Clips in the frame are cut at 12 seconds
   (`CAPTURE_MAX_SECONDS`). Email cannot play video, so emails should use the still.
 - In the app, use `PhoneClip` or `PhoneStill` from `components/ui/phone-frame.tsx`. People who ask

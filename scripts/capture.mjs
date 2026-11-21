@@ -6,7 +6,10 @@
 //
 // Output: captures/<test>/clip.webm, still.png, framed.webm, framed.png, and
 // captures/manifest.json. The clips have no sound and loop cleanly in a <video loop> tag.
-// Needs a built app (npm run build). Exits with an error if nothing could be captured.
+//   CAPTURE_BASE_URL=https://preview.example.com npm run capture     films a deployed preview
+//
+// Without CAPTURE_BASE_URL it films a local build (run npm run build first).
+// Exits with an error if nothing could be captured.
 import { spawnSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
@@ -20,7 +23,9 @@ const targets = args.length > 0 ? args : ["tests/acceptance"];
 
 const fail = message => { console.error(`Capture failed: ${message}`); process.exit(1); };
 if (!Number.isFinite(MAX_SECONDS) || MAX_SECONDS < 1 || MAX_SECONDS > 60) fail("CAPTURE_MAX_SECONDS must be between 1 and 60.");
-if (!existsSync(".next")) fail("the app is not built. Run: npm run build");
+const BASE = process.env.CAPTURE_BASE_URL;
+if (BASE !== undefined && !/^https?:\/\/[^\s/]+\/?$/.test(BASE)) fail("CAPTURE_BASE_URL must be an address like https://preview.example.com with no path.");
+if (!BASE && !existsSync(".next")) fail("the app is not built. Run: npm run build");
 
 rmSync(WORK, { recursive: true, force: true });
 rmSync(OUT, { recursive: true, force: true });
@@ -72,8 +77,11 @@ for (const job of jobs) {
 }
 const manifest = {
   width: 375,
+  height: 812,
+  base_url: BASE ?? null,
   captures: jobs.map(j => ({
-    slug: j.slug, title: j.title, test_file: j.file, alt: j.alt, seconds: j.seconds,
+    slug: j.slug, title: j.title, test_file: j.file, alt: j.alt,
+    clip_seconds: j.clip_seconds, framed_clip_seconds: j.seconds,
     clip: `${j.slug}/clip.webm`, still: `${j.slug}/still.png`,
     framed_clip: `${j.slug}/framed.webm`, framed_still: `${j.slug}/framed.png`
   })),

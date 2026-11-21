@@ -1,0 +1,35 @@
+{
+  "note": "Every place the template can show a merchant's own picture. Read by the build agent. Sizes are in pixels and are the smallest picture that still looks sharp; larger is fine. Pictures are cropped to the aspect ratio from the center. Every picture needs alt text.",
+  "slots": [
+    {
+      "id": "logo", "kind": "logo", "min_width": 128, "min_height": 128, "aspect_ratio": null,
+      "per": "app", "max_count": 1,
+      "shown": "Top bar of every page, 32 px tall.",
+      "placeholder": "A square in the brand color with the first letter of the merchant's name."
+    },
+    {
+      "id": "hero", "kind": "photo", "min_width": 1200, "min_height": 900, "aspect_ratio": "4:3",
+      "per": "app", "max_count": 1,
+      "shown": "Top of the public home page, next to the headline.",
+      "placeholder": "The headline in a plain card, full width. No empty box."
+    },
+    {
+      "id": "about", "kind": "photo", "min_width": 1200, "min_height": 900, "aspect_ratio": "4:3",
+      "per": "app", "max_count": 1,
+      "shown": "About section of the public home page.",
+      "placeholder": "The about text on its own, full width. No empty box."
+    },
+    {
+      "id": "gallery", "kind": "photo", "min_width": 800, "min_height": 800, "aspect_ratio": "1:1",
+      "per": "app", "max_count": 12,
+      "shown": "Gallery grid on the public home page.",
+      "placeholder": "The gallery section is left out."
+    },
+    {
+      "id": "service", "kind": "photo", "min_width": 800, "min_height": 450, "aspect_ratio": "16:9",
+      "per": "service", "max_count": 1,
+      "shown": "Top of each service card. Matched to a service by its name.",
+      "placeholder": "If no service has a photo, cards show no picture area. If some do, the rest show a gray panel with a picture icon."
+    }
+  ]
+}

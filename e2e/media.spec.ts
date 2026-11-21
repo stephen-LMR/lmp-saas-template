@@ -13,6 +13,16 @@ test("every picture on the page has alt text and loads", async ({ page }) => {
   }
 });
 
+test("the logo shows with alt text, and falls back to the first letter", async ({ page }) => {
+  await page.goto("/design/site");
+  await expect(page.getByRole("img", { name: "Demo Merchant logo" })).toBeVisible();
+  await page.goto("/design/site-empty");
+  await expect(page.locator('header [data-slot="merchant-mark"]')).toHaveText("D");
+  await page.route("**/design-samples/logo.svg", route => route.abort());
+  await page.goto("/design/site");
+  await expect(page.locator('header [data-slot="merchant-mark"]')).toHaveText("D");
+});
+
 test("a service with no photo sits next to the others with a quiet placeholder", async ({ page }) => {
   await page.goto("/design/site");
   const cards = page.locator('[data-section="services"] [data-slot="image-slot"]');

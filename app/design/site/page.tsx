@@ -18,5 +18,5 @@ const sample = parseSiteImages({
 });
 
 export default function SiteWithPhotos() {
-  return <SamplePublicPage images={sample} />;
+  return <SamplePublicPage images={sample} logoUrl="/design-samples/logo.svg" />;
 }

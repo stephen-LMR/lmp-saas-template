@@ -50,6 +50,7 @@ export function planJobs(rows, { maxSeconds }) {
       title: r.title,
       file: r.file,
       alt: `The app on a phone: ${r.title}`.slice(0, 160),
+      clip_seconds: Math.max(1, Math.ceil(r.ms / 1000)),
       seconds: Math.max(1, Math.min(maxSeconds, Math.ceil(r.ms / 1000))),
       video: r.video,
       screenshot: r.screenshot

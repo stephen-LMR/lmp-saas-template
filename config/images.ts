@@ -2,6 +2,7 @@
 // never ships stock photos. Every slot is optional and every picture must describe itself
 // (alt text), so a screen reader user gets the same information as everyone else.
 import { z } from "zod";
+import slotCatalog from "../tokens/image-slots.json" with { type: "json" };
 
 const looksLikeFileName = (s: string) =>
   /\.(jpe?g|png|webp|gif|avif|heic|svg)$/i.test(s) || /^(img|dsc|image|photo|picture|pic|untitled)[\s_-]*\d*$/i.test(s);
@@ -21,7 +22,9 @@ export const SiteImage = z.strictObject({
 });
 export type SiteImage = z.infer<typeof SiteImage>;
 
-export const MAX_GALLERY_IMAGES = 12;
+// The published list of picture slots (tokens/image-slots.json), which the build agent reads.
+export const IMAGE_SLOTS = slotCatalog.slots;
+export const MAX_GALLERY_IMAGES = IMAGE_SLOTS.find(s => s.id === "gallery")!.max_count;
 
 export const SiteImages = z.strictObject({
   hero: SiteImage.nullable().default(null),

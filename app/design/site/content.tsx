@@ -14,9 +14,9 @@ const SERVICES = [
 ];
 
 // The same page with and without photos, so both looks are checked by the design gates.
-export function SamplePublicPage({ images }: { images: SiteImages }) {
+export function SamplePublicPage({ images, logoUrl = null }: { images: SiteImages; logoUrl?: string | null }) {
   return (
-    <PublicShell merchantName={appConfig.merchant_name}>
+    <PublicShell merchantName={appConfig.merchant_name} logoUrl={logoUrl}>
       <SiteHero
         title="Grooming your dog will love"
         text="Gentle, unhurried appointments with the same groomer every visit."

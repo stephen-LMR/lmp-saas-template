@@ -1,16 +1,17 @@
 import type { ReactNode } from "react";
+import { MerchantMark } from "@/components/ui/merchant-mark";
 
 // Layout for pages a merchant's customers see without the staff navigation:
 // the public booking page and the customer portal.
-export function PublicShell({ merchantName, nav, children }: { merchantName: string; nav?: ReactNode; children: ReactNode }) {
+export function PublicShell({
+  merchantName, logoUrl, nav, children
+}: { merchantName: string; logoUrl?: string | null; nav?: ReactNode; children: ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col">
       <header className="border-b bg-card">
         <div className="mx-auto flex w-full max-w-content items-center justify-between gap-4 px-4 py-3 md:px-8">
           <div className="flex min-w-0 items-center gap-2">
-            <span aria-hidden className="flex size-8 shrink-0 items-center justify-center rounded-sm bg-primary text-sm font-semibold text-primary-foreground">
-              {merchantName.slice(0, 1).toUpperCase()}
-            </span>
+            <MerchantMark name={merchantName} logoUrl={logoUrl} />
             <span className="truncate font-heading text-lg font-semibold">{merchantName}</span>
           </div>
           {nav}

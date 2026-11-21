@@ -7,6 +7,8 @@ const WIDTHS = [375, 768, 1280];
 // scripts/capture.mjs runs Playwright twice with CAPTURE_STAGE set:
 // "record" films the tests on a phone-sized screen; "frame" puts each clip in the phone frame.
 const stage = process.env.CAPTURE_STAGE;
+// Set by the capture script to film a deployed preview instead of a local build.
+const remote = stage ? process.env.CAPTURE_BASE_URL : undefined;
 const PHONE = { width: 375, height: 812 };
 const FRAMED = { width: 440, height: 880 };
 
@@ -26,11 +28,13 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI && !stage ? 1 : 0,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
-  use: { baseURL: `http://localhost:${PORT}`, trace: stage ? "off" : "retain-on-failure" },
+  use: { baseURL: remote ?? `http://localhost:${PORT}`, trace: stage ? "off" : "retain-on-failure" },
   projects,
-  webServer: {
-    command: `npm run start -- --port ${PORT}`,
-    url: `http://localhost:${PORT}/api/health`,
-    reuseExistingServer: !process.env.CI
-  }
+  webServer: remote
+    ? undefined
+    : {
+        command: `npm run start -- --port ${PORT}`,
+        url: `http://localhost:${PORT}/api/health`,
+        reuseExistingServer: !process.env.CI
+      }
 });

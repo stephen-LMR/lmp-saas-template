@@ -26,7 +26,7 @@ describe("capture planning", () => {
     expect(jobs).toEqual([
       {
         slug: "customer-books-a-visit", title: "Customer books a visit", file: "tests/acceptance/booking.spec.ts",
-        alt: "The app on a phone: Customer books a visit", seconds: 4, video: "/tmp/v.webm", screenshot: "/tmp/s.png"
+        alt: "The app on a phone: Customer books a visit", clip_seconds: 4, seconds: 4, video: "/tmp/v.webm", screenshot: "/tmp/s.png"
       }
     ]);
   });
@@ -49,6 +49,7 @@ describe("capture planning", () => {
     const { jobs } = planJobs(collectTests(report([spec("Book", "expected", long), spec("Book", "expected")])), { maxSeconds: 12 });
     expect(jobs.map(j => j.slug)).toEqual(["book", "book-2"]);
     expect(jobs[0]!.seconds).toBe(12);
+    expect(jobs[0]!.clip_seconds).toBe(95);
   });
 
   it("uses the last try of a retried test", () => {
