@@ -14,7 +14,10 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "check-design": "node scripts/check-design.mjs ."
+    "check-design": "node scripts/check-design.mjs .",
+    "test:visual:update": "UPDATE_VISUAL=1 playwright test e2e/visual.spec.ts --update-snapshots",
+    "check-tokens": "node scripts/check-tokens.mjs .",
+    "gates": "node scripts/gates.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",
@@ -31,6 +34,7 @@
     "zod": "4.6.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "@playwright/test": "1.65.0",
     "@tailwindcss/postcss": "4.3.4",
     "@types/node": "24.19.2",

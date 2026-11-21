@@ -17,6 +17,7 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run check-design
+      - run: npm run check-tokens
       - run: npm test
       - run: npm run build
       - run: npx playwright install --with-deps chromium

@@ -5,7 +5,9 @@ const PORT = 3100;
 const WIDTHS = [375, 768, 1280];
 
 export default defineConfig({
-  testDir: "e2e",
+  testDir: ".",
+  testMatch: ["e2e/**/*.spec.ts", "tests/acceptance/**/*.spec.ts"],
+  snapshotPathTemplate: "e2e/__screenshots__/{platform}/{projectName}/{arg}{ext}",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,

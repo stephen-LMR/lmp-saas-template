@@ -78,7 +78,7 @@ export function ChoiceGrid({
             )}
           >
             <span className="font-medium">{o.label}</span>
-            {o.detail ? <span className="text-sm opacity-90">{o.detail}</span> : null}
+            {o.detail ? <span className="text-sm">{o.detail}</span> : null}
           </button>
         ))}
       </div>
