@@ -42,6 +42,7 @@
   --text-2xl--line-height: 2.5rem;
 
   /* Spacing on a 4px base: 4, 8, 12, 16, 24, 32, 48, 64 */
+  --spacing-0: 0px;
   --spacing-1: 0.25rem;
   --spacing-2: 0.5rem;
   --spacing-3: 0.75rem;

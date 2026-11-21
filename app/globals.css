@@ -15,3 +15,9 @@
     @apply font-heading;
   }
 }
+
+/* Open and closed states of dialogs, sheets, and menus (Radix sets data-state). */
+@custom-variant state-open (&[data-state="open"]);
+@custom-variant state-closed (&[data-state="closed"]);
+/* The navigation link for the page you are on. */
+@custom-variant current (&[aria-current="page"]);
